@@ -1,4 +1,4 @@
-FROM alpine:3.21
+FROM alpine:3.23
 RUN apk add --no-cache \
 	gcc-arm-none-eabi \
 	g++-arm-none-eabi \
@@ -14,7 +14,11 @@ RUN apk add --no-cache \
 	bash \
 	curl \
 	openssh-client \
+	patch \
 	tar
 
 ADD bestsens-SERVER-CA.crt /usr/share/ca-certificates/bestsens/bestsens-SERVER-CA.crt
-RUN cat /usr/share/ca-certificates/bestsens/bestsens-SERVER-CA.crt >> /etc/ssl/certs/ca-certificates.cr
+RUN cat /usr/share/ca-certificates/bestsens/bestsens-SERVER-CA.crt >> /etc/ssl/certs/ca-certificates.crt
+
+ADD metax-root-ca-v2.crt /usr/share/ca-certificates/bestsens/metax-root-ca-v2.crt
+RUN cat /usr/share/ca-certificates/bestsens/metax-root-ca-v2.crt >> /etc/ssl/certs/ca-certificates.crt
