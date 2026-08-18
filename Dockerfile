@@ -12,13 +12,12 @@ RUN apk add --no-cache \
 	ccache \
 	cmake \
 	bash \
+	ca-certificates \
 	curl \
 	openssh-client \
 	patch \
 	tar
 
-ADD bestsens-SERVER-CA.crt /usr/share/ca-certificates/bestsens/bestsens-SERVER-CA.crt
-RUN cat /usr/share/ca-certificates/bestsens/bestsens-SERVER-CA.crt >> /etc/ssl/certs/ca-certificates.crt
-
-ADD metax-root-ca-v2.crt /usr/share/ca-certificates/bestsens/metax-root-ca-v2.crt
-RUN cat /usr/share/ca-certificates/bestsens/metax-root-ca-v2.crt >> /etc/ssl/certs/ca-certificates.crt
+COPY bestsens-SERVER-CA.crt /usr/local/share/ca-certificates/bestsens-SERVER-CA.crt
+COPY metax-root-ca-v2.crt /usr/local/share/ca-certificates/metax-root-ca-v2.crt
+RUN update-ca-certificates
