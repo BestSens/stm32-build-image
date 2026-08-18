@@ -10,5 +10,5 @@ jobs:
         uses: macbre/push-to-ghcr@master
         with:
           image_name: metax-sensors/stm32-build-image
-          image_tag: gcc15
+          image_tag: gcc16
           github_token: ${{ secrets.GITHUB_TOKEN }}
